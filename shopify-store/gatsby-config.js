@@ -7,6 +7,15 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        shopName: "jgstoregood",
+        accessToken: `2351750138e1a71bf0e53cb31a53de80`,
+        verbose: true,
+        paginationSize: 250,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
