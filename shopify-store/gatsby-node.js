@@ -8,7 +8,7 @@
 
 const path = require("path")
 
-exports.createPage = async ({ graphql, actions: { createPages } }) => {
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const pages = await graphql(`
     {
       allShopifyProduct {
@@ -20,16 +20,15 @@ exports.createPage = async ({ graphql, actions: { createPages } }) => {
         }
       }
     }
-  `);
-
+  `)
+  console.log(pages)
   pages.data.allShopifyProduct.edges.forEach(edge => {
     createPage({
-      path = `/products/${edge.node.handle}`,
-      component: path.resolve('./src/pages/page-2.js'),
+      path: `/products/${edge.node.handle}`,
+      component: path.resolve("./src/pages/page-2.js"),
       context: {
         id: edge.node.id,
-        handle: edge.node.handle
-      }
+      },
     })
   })
 }
